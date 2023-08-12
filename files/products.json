@@ -1,0 +1,101 @@
+[
+     {
+          "title": "Monitor Dell 27\"",
+          "description": "QHD Display, IPS Panel",
+          "price": 299,
+          "thumbnail": "dell_monitor.jpg",
+          "code": "MN-DELL-002",
+          "stock": 30,
+          "id": 2
+     },
+     {
+          "title": "Teclado Mecánico Corsair K70",
+          "description": "Interruptores Cherry MX Red, Retroiluminación RGB",
+          "price": 149.99,
+          "thumbnail": "corsair_keyboard.jpg",
+          "code": "KB-CRSR-003",
+          "stock": 25,
+          "id": 3
+     },
+     {
+          "title": "Mouse Logitech MX Master 3",
+          "description": "Sensor de Alta Precisión, Inalámbrico",
+          "price": 99.99,
+          "thumbnail": "logitech_mouse.jpg",
+          "code": "MS-LGTCH-004",
+          "stock": 40,
+          "id": 4
+     },
+     {
+          "title": "Tarjeta Gráfica NVIDIA GeForce RTX 3080",
+          "description": "10GB GDDR6X, Ray Tracing",
+          "price": 899,
+          "thumbnail": "rtx_3080.jpg",
+          "code": "GPU-NV-005",
+          "stock": 5,
+          "id": 5
+     },
+     {
+          "title": "SSD Samsung 970 EVO",
+          "description": "1TB NVMe, Velocidades de Lectura/Escritura Altas",
+          "price": 169,
+          "thumbnail": "samsung_ssd.jpg",
+          "code": "SSD-SM-006",
+          "stock": 15,
+          "id": 6
+     },
+     {
+          "title": "Procesador AMD Ryzen 9 5900X",
+          "description": "12 Núcleos, 24 Hilos",
+          "price": 549,
+          "thumbnail": "ryzen_5900x.jpg",
+          "code": "CPU-AMD-007",
+          "stock": 10,
+          "id": 7
+     },
+     {
+          "title": "Memoria RAM Corsair Vengeance LPX",
+          "description": "32GB (2x16GB), DDR4 3200MHz",
+          "price": 199.99,
+          "thumbnail": "corsair_ram.jpg",
+          "code": "RAM-CRSR-008",
+          "stock": 30,
+          "id": 8
+     },
+     {
+          "title": "Placa Base ASUS ROG Strix B550-F",
+          "description": "Soporte para Ryzen 5000, Wi-Fi 6",
+          "price": 199,
+          "thumbnail": "asus_motherboard.jpg",
+          "code": "MB-ASUS-009",
+          "stock": 20,
+          "id": 9
+     },
+     {
+          "title": "Fuente de Alimentación EVGA 750W",
+          "description": "Certificación Gold, Modular",
+          "price": 119,
+          "thumbnail": "evga_psu.jpg",
+          "code": "PSU-EVGA-010",
+          "stock": 25,
+          "id": 10
+     },
+     {
+          "title": "Monitor LG UltraGear 27\"",
+          "description": "1440p, 144Hz, IPS Panel",
+          "price": 100,
+          "thumbnail": "lg_monitor.jpg",
+          "code": "MN-LG-011",
+          "stock": 20,
+          "id": 11
+     },
+     {
+          "title": "Laptop HP Pavilion",
+          "description": "Intel Core i5, 8GB RAM, 256GB SSD",
+          "price": 799.99,
+          "thumbnail": "hp_pavilion.jpg",
+          "code": "LT-HP-001",
+          "stock": 20,
+          "id": 12
+     }
+]
