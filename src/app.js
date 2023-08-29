@@ -1,36 +1,15 @@
 const express = require('express');
-const productsData = require('./files/products');
+const productRouter=require('./routes/products.routes')
+const cartRouter=require('./routes/cart.routes')
 
-const PORT = 3000;
+const PORT = 8080;
 const app = express();
 
-app.get('/products', (req, res) => {
-    const { limit } = req.query;
-    let productsToSend = productsData;
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
-    console.log(productsData);
-
-    if (limit) {
-        const limitValue = parseInt(limit);
-        if (!isNaN(limitValue)) {
-            productsToSend = productsData.slice(0, limitValue);
-        }
-    }
-
-    res.json(productsToSend);
-});
-
-app.get('/products/:pid', (req, res) => {
-    const productId = parseInt(req.params.pid);
-    console.log(typeof productId)
-    const product = productsData.find(product => product.id === productId);
-
-    if (product) {
-        res.json(product);
-    } else {
-        res.status(404).json({ error: 'Product not found' });
-    }
-});
+app.use('/api/products/',productRouter)
+app.use('/api/carts/',cartRouter)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

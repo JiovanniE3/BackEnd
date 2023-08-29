@@ -1,4 +1,3 @@
-const { log } = require('console')
 const fs = require('fs')
 
 class ProductManager {
@@ -12,18 +11,18 @@ class ProductManager {
         } else return []
     }
 
-    async addProducts(title, description, price, thumbnail, code, stock) {
+    async addProducts(title, description, price, thumbnail, code, stock, category) {
         let products = await this.getProducts()
 
         if (products.length > 0) {
-            let findProduct = products.find(products => products.code === code)
+            let findProduct = products.find(product => product.code === code)
 
             if (findProduct) {
                 console.log(`The Code ${code} already exists`)
                 return
             } else {
                 let newProduct = {
-                    title, description, price, thumbnail, code, stock
+                    title, description, price, status:true, thumbnail, code, stock, category
                 }
 
                 if (products.length === 0) {
@@ -36,41 +35,36 @@ class ProductManager {
                 await fs.promises.writeFile(this.path, JSON.stringify(products, null, 5))
             }
         }
-
-
     }
 
-    async getProductsbyId(idProduct) {
-
+    async getProductsById(idProduct) {
         let products = await this.getProducts()
-
-        let findProduct = products.find(products => products.id === idProduct)
-
-        return findProduct ? console.log(findProduct) : console.log(`Product with ID ${idProduct} was not found. (getProductbyID)`)
+        let findProduct = products.find(product => product.id === idProduct)
+        return findProduct ? findProduct : null;
     }
 
-    async updateProduct(title, description, price, thumbnail, code, stock, idProduct) {
-
+    async updateProduct(title, description, price, thumbnail, code, stock, category,idProduct) {
         let products = await this.getProducts();
-    
         let updatedProductIndex = products.findIndex(product => product.id === idProduct);
-    
+
         if (updatedProductIndex !== -1) {
             let updatedProduct = {
                 
                 title,
                 description,
                 price,
+                status:true,
                 thumbnail,
                 code,
                 stock,
-                id: idProduct,
+                category,
+                idProduct
+                
             };
-    
-            products[updatedProductIndex] = updatedProduct;
-    
-            await fs.promises.writeFile(this.path, JSON.stringify(products, null, 5));
 
+            products[updatedProductIndex] = updatedProduct;
+
+            await fs.promises.writeFile(this.path, JSON.stringify(products, null, 5));
             console.log(`${title} has been updated`);
         } else {
             console.log(`Product with ID ${idProduct} was not found. (updateProduct)`);
@@ -96,23 +90,14 @@ class ProductManager {
 
         }
     }
-
 }
 
 const develop = async () => {
     let path = './files/products.json'
     let productFile = new ProductManager(path)
-
-    
-    
-
-    await productFile.addProducts('Laptop HP Pavilion', 'Intel Core i5, 8GB RAM, 256GB SSD', 799.99, 'hp_pavilion.jpg', 'LT-HP-001', 20);
-    await productFile.updateProduct('Monitor LG UltraGear 27"', '1440p, 144Hz, IPS Panel', 100, 'lg_monitor.jpg', 'MN-LG-011', 20, 11)
-    await productFile.getProductsbyId(11)
-    await productFile.deleteProduct(1)
-
+    // await productFile.addProducts('Laptop HP Pavilion', 'Intel Core i5, 8GB RAM, 256GB SSD', 799.99, 'hp_pavilion.jpg', 'LT-HP-001', 20,"Laptops");
+    // await productFile.updateProduct('Laptop HP Pavilion', 'Intel Core i5, 8GB RAM, 256GB SSD', 800, 'hp_pavilion.jpg', 'LT-HP-001', 20,"Laptops",11);
     console.log(await productFile.getProducts());
-    
 }
 
 develop()
