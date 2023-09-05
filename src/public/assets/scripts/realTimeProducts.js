@@ -27,7 +27,7 @@ document.getElementById('addProductForm').addEventListener('submit', async (e) =
 
     const formData = new FormData(e.target);
     const productData = {
-        // Asigna los valores de los campos directamente al objeto JSON
+        
         title: formData.get('title'),
         description: formData.get('description'),
         price: parseFloat(formData.get('price')),
@@ -37,7 +37,7 @@ document.getElementById('addProductForm').addEventListener('submit', async (e) =
         category: formData.get('category')
     };
 
-    // Puedes verificar el objeto JSON resultante en la consola
+   
     console.log(productData);
 
     try {
@@ -50,10 +50,9 @@ document.getElementById('addProductForm').addEventListener('submit', async (e) =
         });
 
         if (response.ok) {
-            // Producto agregado con éxito
-            // Actualizar la lista de productos en la interfaz de usuario si es necesario
+
         } else {
-            // Manejar errores si es necesario
+            
         }
     } catch (error) {
         console.error('Error al enviar la solicitud POST:', error);
