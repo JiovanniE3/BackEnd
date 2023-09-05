@@ -1,5 +1,80 @@
 const socket=io()
 
+document.getElementById('deleteProductForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const productId = document.getElementById('productIdToDelete').value;
+
+    try {
+        const response = await fetch(`/api/products/${productId}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+
+            loadProducts();
+
+        } else {
+           
+        }
+    } catch (error) {
+        console.error('Error al enviar la solicitud DELETE:', error);
+    }
+});
+
+document.getElementById('addProductForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const productData = {
+        // Asigna los valores de los campos directamente al objeto JSON
+        title: formData.get('title'),
+        description: formData.get('description'),
+        price: parseFloat(formData.get('price')),
+        thumbnail: formData.get('thumbnail'),
+        code: formData.get('code'),
+        stock: parseInt(formData.get('stock')),
+        category: formData.get('category')
+    };
+
+    // Puedes verificar el objeto JSON resultante en la consola
+    console.log(productData);
+
+    try {
+        const response = await fetch('/api/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productData),
+        });
+
+        if (response.ok) {
+            // Producto agregado con éxito
+            // Actualizar la lista de productos en la interfaz de usuario si es necesario
+        } else {
+            // Manejar errores si es necesario
+        }
+    } catch (error) {
+        console.error('Error al enviar la solicitud POST:', error);
+    }
+});
+
+
+
+
+socket.on('productListUpdate', (products) => {
+    const productList = document.getElementById('productList');
+    productList.innerHTML = '';
+
+    products.forEach((product) => {
+        const li = document.createElement('li');
+        li.textContent = `ID: ${product.id}, Título: ${product.title}, Descripción: ${product.description}`;
+        productList.appendChild(li);
+    });
+});
+
+
 socket.on('newProduct',( newProduct , products)=>{
     console.log(`Se ha dado de alta: ${newProduct.title}`)
 

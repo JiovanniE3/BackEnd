@@ -4,9 +4,47 @@
     <ul id="mainProducts"></ul>
 </div>
 
+<hr>
+
 <a href="/">
     <button>Home - All Products</button>
 </a>
+
+<hr>
+
+<form id="addProductForm">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" required>
+
+    <label for="code">Code:</label>
+    <input type="text" id="code" name="code" required>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" step="0.01" required>
+
+    <label for="thumbnail">Thumbnail:</label>
+    <input type="text" id="thumbnail" name="thumbnail" required>
+
+    <label for="stock">Stock:</label>
+    <input type="number" id="stock" name="stock" required>
+
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" required>
+
+    <button type="submit"> Add Product </button>
+</form>
+<hr>
+
+<form id="deleteProductForm">
+    <label for="productIdToDelete">Product id to delete:</label>
+    <input type="text" id="productIdToDelete"  required>
+    <button type="submit">Delete Product</button>
+</form>
+
+
 
 <script src="socket.io/socket.io.js"></script>
 <script src="assets/scripts/realTimeProducts.js"></script>

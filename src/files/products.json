@@ -88,25 +88,14 @@
           "id": 8
      },
      {
-          "title": "Mechanical Keyboard Corsair K95 RGB",
-          "description": "Cherry MX Brown Switches, RGB Backlighting",
-          "price": 199.99,
+          "title": "Teclado mecánico Corsair K70 RGB",
+          "description": "Interruptores Cherry MX Red, retroiluminación RGB",
+          "code": "KB-CRSR-015",
+          "price": 159.99,
           "status": true,
-          "thumbnail": "corsair_keyboard.jpg",
-          "code": "KB-CRSR-009",
-          "stock": 30,
-          "category": "Keyboards",
+          "thumbnail": "corsair_k70.jpg",
+          "stock": 20,
+          "category": "Teclados",
           "id": 9
-     },
-     {
-          "title": "Graphics Card NVIDIA GeForce RTX 3060",
-          "description": "8GB GDDR6, Ray Tracing",
-          "price": 499,
-          "status": true,
-          "thumbnail": "rtx_3060.jpg",
-          "code": "GPU-NV-010",
-          "stock": 8,
-          "category": "Graphics Cards",
-          "id": 10
      }
 ]
