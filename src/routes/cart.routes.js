@@ -1,11 +1,12 @@
-const Router = require('express').Router;
+import { Router } from 'express';
+import path from 'path';
+import fs from 'fs';
+import __dirname from '../utils.js';
+
 const router = Router();
+const rutaProduct = path.join(__dirname,'files', 'products.json');
+const rutaCarts = path.join(__dirname,'files', 'carts.json');
 
-const path = require('path');
-const fs = require('fs');
-
-const rutaProduct = path.join(__dirname, '..', 'files', 'products.json');
-const rutaCarts = path.join(__dirname, '..', 'files', 'carts.json');
 
 function getProducts() {
     if (fs.existsSync(rutaProduct)) {
@@ -82,4 +83,4 @@ router.post('/:cid/product/:pid', (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

@@ -1,10 +1,14 @@
-const Router = require('express').Router;
+import { Router } from 'express';
+import path from 'path';
+import fs from 'fs';
+import __dirname from '../utils.js';
+import { serverSocket } from "../app.js";
+
+
 const router = Router();
 
-const path = require('path');
-const fs = require('fs');
-
-const ruta = path.join(__dirname, '..', 'files', 'products.json');
+const ruta = path.join(__dirname, 'files', 'products.json');
+console.log('Ruta completa del archivo:', ruta);
 
 function getProducts() {
     if (fs.existsSync(ruta)) {
@@ -30,8 +34,11 @@ router.get('/', (req, res) => {
         }
     }
 
-    res.json(products);
+    res.json(products);  
+
 });
+
+
 
 router.get('/:pid', (req, res) => {
     const productId = parseInt(req.params.pid);
@@ -47,7 +54,7 @@ router.get('/:pid', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const { title, description, code, price,  thumbnail, stock, category } = req.body;
+    const { title, description, code, price, thumbnail, stock, category } = req.body;
 
     if (!title || !description || !code || !price || !thumbnail || !stock || !category) {
         return res.status(400).json({ error: 'Complete all required fields in the body' });
@@ -60,14 +67,16 @@ router.post('/', (req, res) => {
         description,
         code,
         price,
-        status:true,
+        status: true,
         thumbnail,
         stock,
         category,
-        id:products.length > 0 ? products[products.length - 1].id + 1 : 1,
+        id: products.length > 0 ? products[products.length - 1].id + 1 : 1,
     };
 
     products.push(newProduct);
+
+    serverSocket.emit('newProduct', newProduct , products)
 
     saveProducts(products);
 
@@ -86,7 +95,7 @@ router.put('/:pid', (req, res) => {
     const productIndex = products.findIndex(product => product.id === productId);
 
     if (productIndex !== -1) {
-    
+
         const originalThumbnail = products[productIndex].thumbnail;
 
         products[productIndex] = {
@@ -95,7 +104,7 @@ router.put('/:pid', (req, res) => {
             code,
             price,
             status: true,
-            thumbnail: thumbnail || originalThumbnail, 
+            thumbnail: thumbnail || originalThumbnail,
             stock,
             category,
             id: productId,
@@ -117,10 +126,14 @@ router.delete('/:pid', (req, res) => {
     if (productIndex !== -1) {
         const deletedProduct = products.splice(productIndex, 1);
         saveProducts(products);
+
+        serverSocket.emit('productDeleted', { productId, products });
+
         res.status(200).json({ deletedProduct: deletedProduct[0] });
     } else {
         res.status(404).json({ error: 'Product not found' });
     }
 });
 
-module.exports = router;
+
+export default router;
