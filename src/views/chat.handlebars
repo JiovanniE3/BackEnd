@@ -1,0 +1,28 @@
+<h2>Chat</h2>
+<hr>
+<div id="mainBoxChat">
+    <ul id="mainChat"></ul>
+</div>
+<form id="addMessage">
+
+    <h2 id="user"></h2>
+    <label for="message">Message:</label>
+    <input type="text" id="message" name="message" required>
+
+    <button type="submit"> Send Message </button>
+</form>
+<div id="buttons">
+<a href="/">
+    <button>Home - All Products</button>
+</a>
+
+<a href="/realTimeProducts">
+    <button>Real Time Products</button>
+</a>
+
+<button id="deleteButton">Delete Chat</button>
+</div>
+
+
+<script src="socket.io/socket.io.js"></script>
+<script src="assets/scripts/chat.js"></script>

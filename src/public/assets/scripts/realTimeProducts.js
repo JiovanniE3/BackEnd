@@ -119,7 +119,7 @@ const loadProducts = () => {
         .then(products => {
             let ul = '';
             products.forEach(product => {
-                ul += `<li id="${product.id}">${product.title}</li>`;
+                ul += `<li id="${product.id}">ID(${product.id}) ${product.title}</li>`;
             });
             let ulProduct = document.getElementById('mainProducts');
             ulProduct.innerHTML = ul;

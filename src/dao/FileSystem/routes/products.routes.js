@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import path from 'path';
 import fs from 'fs';
-import __dirname from '../utils.js';
-import { serverSocket } from "../app.js";
+import __dirname from '../../../utils.js';
+import { serverSocket } from "../../../app.js";
 
 
 const router = Router();
@@ -136,4 +136,4 @@ router.delete('/:pid', (req, res) => {
 });
 
 
-export default router;
+//export default router;

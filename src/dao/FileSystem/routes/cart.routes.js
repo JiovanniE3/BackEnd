@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import path from 'path';
 import fs from 'fs';
-import __dirname from '../utils.js';
+import __dirname from '../../../utils.js';
 
 const router = Router();
 const rutaProduct = path.join(__dirname,'files', 'products.json');
@@ -83,4 +83,4 @@ router.post('/:cid/product/:pid', (req, res) => {
     }
 });
 
-export default router;
+//export default router;
