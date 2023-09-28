@@ -79,7 +79,7 @@ socket.on('newProduct',( newProduct , products)=>{
 
     let ul=''
     products.forEach(product=>{
-        ul+=`<li>${product.title}</li>` 
+        ul += `<li id="${product.id}">Id: ${product.id} Product: ${product.title} Price : ${product.price}</li>`;
     })
 
     let ulProduct=document.getElementById('mainProducts')
@@ -104,7 +104,7 @@ socket.on('productDeleted', ({ productId, products }) => {
 function updateProductList(products) {
     let ul = '';
     products.forEach(product => {
-        ul += `<li>${product.title}</li>`;
+        ul += `<li id="${product.id}">Id: ${product.id} Product: ${product.title} Price : ${product.price}</li>`;
     });
 
     let ulProduct = document.getElementById('mainProducts');
@@ -112,14 +112,14 @@ function updateProductList(products) {
 }
 
 const loadProducts = () => {
-    fetch('/api/products')
+    fetch('/api/products/?limit=99')
         .then(data => {
             return data.json();
         })
         .then(products => {
             let ul = '';
-            products.forEach(product => {
-                ul += `<li id="${product.id}">ID(${product.id}) ${product.title}</li>`;
+            products.products.forEach(product => {
+                ul += `<li id="${product.id}">Id: ${product.id} Product: ${product.title} Price : ${product.price}</li>`;
             });
             let ulProduct = document.getElementById('mainProducts');
             ulProduct.innerHTML = ul;

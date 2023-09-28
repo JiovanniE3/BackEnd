@@ -1,8 +1,5 @@
 import express from 'express';
 import path from 'path';
-// import productRouter from './dao/FileSystem/routes/products.routes.js';
-// import cartRouter from './dao/FileSystem/routes/cart.routes.js';
-// import { router as viewRouter } from './dao/FileSystem/routes/views.routes.js';
 import productsRouter from './dao/MongoDb/routes/products.routes.js';
 import viewRouter from './dao/MongoDb/routes/views.routes.js';
 import cartRouter from './dao/MongoDb/routes/cart.routes.js';
@@ -16,7 +13,7 @@ import mongoose from 'mongoose';
 const PORT = 8080;
 const app = express();
 
-app.engine('handlebars', engine());
+app.engine('handlebars', engine({allowProtoMethodsByDefault: true,}));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname,'/views'));
 
@@ -25,13 +22,17 @@ console.log(path.join(__dirname,'/views'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-app.use(express.static(path.join(__dirname,'/public')));
+  
+app.use(express.static(path.join(__dirname, '/public')));
+
 console.log(path.join(__dirname,'/public'));
 
 app.use('/api/products/', productsRouter);
 app.use('/api/messages/', messageRoute); //
 app.use('/api/carts/', cartRouter); //
 app.use('/', viewRouter); //
+
+
 
 
 const serverExpress=app.listen(PORT,()=>{

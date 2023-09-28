@@ -9,11 +9,40 @@ const router = Router();
 
 
 router.get('/', async (req, res) => {
+    const { limit = 10, page = 1, sort, query } = req.query;
 
-    let products = await productsModel.find()
+    const options = {
+        page: parseInt(page), // Número de página
+        limit: parseInt(limit), // Cantidad de resultados por página
+    };
 
-    res.json(products);
+    // Opciones de ordenamiento
+    if (sort) {
+        const sortOrder = sort === 'asc' ? 1 : sort === 'desc' ? -1 : 0;
+        if (sortOrder !== 0) {
+            options.sort = { price: sortOrder };
+        }
+    }
 
+    // Opciones de filtro
+    const filter = query ? { category: query } : {};
+
+    try {
+        const products = await productsModel.paginate(filter, options); // Realiza la consulta con paginación
+        
+        const responseData = {
+            products: products.docs, // Lista de productos en la página actual
+            totalPages: products.totalPages, // Total de páginas
+            hasPrevPage: products.hasPrevPage, // Indica si hay una página anterior
+            hasNextPage: products.hasNextPage, // Indica si hay una página siguiente
+            prevPage: products.prevPage, // Número de página anterior
+            nextPage: products.nextPage, // Número de página siguiente
+        };
+        res.status(200).json(responseData);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al buscar productos.' });
+    }
+    
 });
 
 
