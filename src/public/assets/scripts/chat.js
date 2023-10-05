@@ -1,7 +1,5 @@
 const socket = io()
 
-const user = prompt("Enter Email")
-
 document.getElementById("user").innerHTML = "User: " + user;
 
 

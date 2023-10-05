@@ -1,11 +1,20 @@
-<h2>Products</h2>
+<nav>
+<h2>Products </h2>
+<span> Welcome {{ user.name }} ({{ user.rol }}) </span>
+<ul>
+    <li> <a href="/api/session/logout">
+            Logout
+        </a>
+    </li>
+</ul>
+</nav>
 <hr>
 <div>
     <ul id="mainProducts"></ul>
 
 </div>
 <div id="product-details" style="display: none;">
-    
+
 </div>
 
 <hr>

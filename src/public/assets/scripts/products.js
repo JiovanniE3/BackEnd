@@ -1,5 +1,7 @@
 const socket = io();
 
+
+
 const loadProducts = () => {
 
     const urlSearchParams = new URLSearchParams(window.location.search);
