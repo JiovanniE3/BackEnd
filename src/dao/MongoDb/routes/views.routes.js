@@ -37,10 +37,7 @@ router.get('/chat',auth,(req,res)=>{
     res.status(200).render('chat');
 })
 
-router.get('/products',auth, (req, res) => {
-    res.setHeader('Content-Type', 'text/html');
-    res.status(200).render('products');
-});
+
 
 router.get('/products',auth, (req, res) => {
     res.setHeader('Content-Type', 'text/html');

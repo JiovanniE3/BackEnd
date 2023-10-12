@@ -11,6 +11,9 @@ import __dirname from './utils.js';
 import mongoose from 'mongoose';
 import session from 'express-session';
 import ConnectMongo from 'connect-mongo'
+import passport from 'passport';
+import { inicializaPassport } from './config/passport.config.js';
+
 
 
 const PORT = 8080;
@@ -25,6 +28,7 @@ console.log(path.join(__dirname, '/views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 app.use(session({
     secret: 'claveSecreta',
     resave: true, saveUninitialized: true,
@@ -38,6 +42,10 @@ app.use(function sessionMiddleware(req, res, next) {
     res.locals.user = req.session.user || null;
     next();
 })
+
+inicializaPassport()
+app.use(passport.initialize())
+app.use(passport.session())
 
 
 
