@@ -1,12 +1,16 @@
 <nav>
 <h2>Product Detail</h2>
 <span> {{ user.name }} ({{ user.rol }}) </span>
-<ul>
-    <li> <a href="/api/session/logout">
-            Logout
-        </a>
-    </li>
-</ul>
+    <ul>
+        <li> <a href="/carts/{{ user.cart }}">
+                Cart
+            </a>
+        </li>
+        <li> <a href="/api/session/logout">
+                Logout
+            </a>
+        </li>
+    </ul>
 </nav>
 <hr>
 <div>
@@ -36,6 +40,8 @@
 </div>
 <script>
     const productId = {{ productId }};
+    const userCart = "{{ user.cart }}";
+
 </script>
 
 <script src="/assets/scripts/productDetail.js"></script>

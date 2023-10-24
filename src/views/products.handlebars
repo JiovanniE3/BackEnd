@@ -1,12 +1,16 @@
 <nav>
-<h2>Products </h2>
-<span> Welcome {{ user.name }} ({{ user.rol }}) </span>
-<ul>
-    <li> <a href="/api/session/logout">
-            Logout
-        </a>
-    </li>
-</ul>
+    <h2>Products </h2>
+    <span> Welcome {{ user.name }} ({{ user.rol }}) </span>
+    <ul>
+        <li> <a href="/carts/{{ user.cart }}">
+                Cart
+            </a>
+        </li>
+        <li> <a href="/api/session/logout">
+                Logout
+            </a>
+        </li>
+    </ul>
 </nav>
 <hr>
 <div>
@@ -37,6 +41,9 @@
     </a>
 
 </div>
+<script>
+    const userCart = "{{ user.cart }}";
+</script>
 
 <script src="socket.io/socket.io.js"></script>
 <script src="assets/scripts/products.js"> </script>

@@ -47,10 +47,6 @@ inicializaPassport()
 app.use(passport.initialize())
 app.use(passport.session())
 
-
-
-
-
 app.use(express.static(path.join(__dirname, '/public')));
 
 console.log(path.join(__dirname, '/public'));

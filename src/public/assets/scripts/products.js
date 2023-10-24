@@ -1,7 +1,5 @@
 const socket = io();
 
-
-
 const loadProducts = () => {
 
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -102,14 +100,12 @@ const loadProducts = () => {
 loadProducts();
 
 
-
-
 document.addEventListener('click', async (event) => {
     if (event.target.classList.contains('add-to-cart')) {
         const productId = event.target.getAttribute('data-product-id'); 
         
         try {
-            const response = await fetch(`/api/carts/1/product/${productId}`, {
+            const response = await fetch(`/api/carts/${userCart}/product/${productId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -118,7 +114,7 @@ document.addEventListener('click', async (event) => {
 
             if (response.ok) {
                 console.log('Producto agregado al carrito con éxito');
-                alert("Se agrego al Carrito 1")
+                alert(`Se agrego al Carrito ${userCart}`)
             } else {
                 console.error('Error al agregar el producto al carrito');
             }

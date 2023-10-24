@@ -1,3 +1,4 @@
+import { Schema, model } from "mongoose";
 import mongoose from 'mongoose'
 
 export const usersModel=mongoose.model('usersData', new mongoose.Schema({
@@ -6,5 +7,7 @@ export const usersModel=mongoose.model('usersData', new mongoose.Schema({
         type: String, unique: true
     },
     password: String,
-    github: {}
+    cart: { type: Schema.Types.ObjectId, ref: 'carts' },
+    github: {},
+    role: String
 }))
